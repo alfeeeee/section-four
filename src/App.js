@@ -1,15 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
 import UserInput from './User/UserInput';
+import UserOutput from './User/UserOutput';
 
-function App() {
-  return (
-    <div className="App">
-      <UserInput />
+class App extends Component {
+  state = {
+    "name": "please log in"
+  }
+
+  showNameHandler = (event) => {
+    this.setState({
+      "name" : event.target.value
+    })
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+        <UserOutput name={this.state.name}/>
+        <UserInput name={this.state.name} changed={this.showNameHandler}/>
     </div>
-  );
+    );
+  }
 }
 
 export default App;
